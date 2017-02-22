@@ -1,0 +1,29 @@
+<div class="card card-shadow bgc-white bd-0">
+	<h6 class="card-header" style="margin-bottom: -1px;"><i class="lnr-paper-plane ico"></i> Publish</h6>
+	<ul class="list-group list-group-flush" data-toggle="check">
+		<li class="list-group-item">
+			<label class="check" tabindex="0">
+				Draft
+				<input type="radio" name="publish" autocomplete="off" class="hidden-xs-up" value="draft" aria-checked="false"  checked />
+			</label>
+		</li>
+		<li class="list-group-item">
+			<label class="check" tabindex="0">
+				Now
+				<input type="radio" name="publish" autocomplete="off" class="hidden-xs-up" value="now" aria-checked="false" />
+			</label>
+		</li>
+		<li class="list-group-item">
+			<label class="check" tabindex="0">
+				Later
+				<input type="radio" name="publish" autocomplete="off" class="hidden-xs-up" value="later" aria-checked="false" data-target="#publish-later" />
+			</label>
+		</li>
+		<li class="list-group-item" id="publish-later">
+			<div class="input-group">
+				<input type="text" class="form-control" name="publish-date" data-datepicker />
+				<span class="input-group-addon"><i class="lnr-calendar-31"></i></span>
+			</div>
+		</li>
+	</ul>
+</div>

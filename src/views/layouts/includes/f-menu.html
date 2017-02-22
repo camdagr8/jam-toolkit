@@ -1,0 +1,58 @@
+<!-- fabricator menu -->
+<div class="f-menu">
+
+	{{> f-controls}}
+
+	<ul>
+		<li>
+			<a href="{{baseurl}}/index.html" class="f-menu__heading">Overview</a>
+			<ul>
+			  {{#each docs}}
+			  <li>
+				<a href="{{baseurl}}/docs.html#{{@key}}">{{name}}</a>
+			  </li>
+			  {{/each}}
+			</ul>
+		</li>
+
+		{{#if toolkit.api}}
+		<li>
+		  <a href="{{baseurl}}/creative.html" class="f-menu__heading">Creative</a>
+		  <ul data-folder-list="#folder-menu-template"></ul>
+		</li>
+
+		{{/if}}
+
+		{{#each views}}
+		<li>
+			<a href="{{baseurl}}/{{@key}}.html" class="f-menu__heading">{{name}}</a>
+			<ul>
+				{{#each items}}
+				<li>
+					<a href="{{baseurl}}/{{@../key}}/{{@key}}.html" target="_blank">{{name}}</a>
+				</li>
+				{{/each}}
+			</ul>
+		</li>
+		{{/each}}
+
+		{{#each materials}}
+		<li>
+			<a href="{{baseurl}}/{{@key}}.html" class="f-menu__heading">{{name}}</a>
+			<ul>
+				{{#each items}}
+				<li>
+					<a href="{{baseurl}}/{{@../key}}.html#{{@key}}">{{name}}</a>
+				</li>
+				{{/each}}
+			</ul>
+		</li>
+		{{/each}}
+	</ul>
+</div>
+<script type="text/x-handlebars-template" id="folder-menu-template">
+  <li>
+    <a href="{{baseurl}}/creative.html#/f/\{{name}}">\{{name}}</a>
+  </li>
+</script>
+<!-- /fabricator menu -->

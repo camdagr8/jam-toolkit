@@ -1,0 +1,108 @@
+---
+{
+	"title": "Admin: New Page",
+	"body-class": "admin bgc-gray-lightest"
+}
+---
+<header class="header header-default">
+	<nav class="navbar navbar-toggleable-md navbar-inverse bg-translucent">
+		<a class="navbar-brand" href="#"><img src="" />Jam</a>
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#header-toggle" aria-controls="header-toggle" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="header-toggle">
+			<ul class="navbar-nav ml-auto mt-2 mt-md-0">
+				<li class="nav-item active">
+					<a class="nav-link" href="#"><i class="lnr-user mr-xs"></i> Sign out</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</header>
+
+<section id="admin-alert" class="hidden-xs-up">
+	<div class="alert alert-danger">
+		{{lipsum 200 500}}
+	</div>
+</section>
+
+<main class="admin-container" role="main">
+	<aside id="admin-menu" class="bg-translucent bdc-inverse" aria-expanded="true">
+		<ul class="list-menu">
+			<li class="list-menu-heading active" data-toggle="collapse" href="#admin-collapse-1" aria-expanded="true" aria-controls="admin-collapse-1">
+				<span class="badge badge-info">20</span><h6><i class="lnr-document2 ico"></i>Pages</h6>
+			</li>
+			<li class="list-sub-menu collapse show" id="admin-collapse-1" aria-expanded="true">
+				<ul class="list-sub-menu collapse show" id="admin-collapse-1">
+					<li>
+						<a href="/templates/admin-page.html" class="list-menu-item menu-add">New Page</a>
+					</li>
+					<li><a href="#" class="list-menu-item">Cras justo odio</a></li>
+					<li><a href="#" class="list-menu-item">Cras justo odio</a></li>
+					<li><a href="#" class="list-menu-item">Cras justo odio</a></li>
+					<li><a href="#" class="list-menu-item">Cras justo odio</a></li>
+				</ul>
+			</li>
+
+			<li class="list-menu-heading" data-toggle="collapse" href="#admin-collapse-2" aria-expanded="false" aria-controls="admin-collapse-2">
+				<span class="badge badge-info">99+</span><h6><i class="lnr-menu3 ico"></i>Navigation</h6>
+			</li>
+			<li class="list-sub-menu collapse" id="admin-collapse-2">
+				<ul class="list-sub-menu">
+					<li><a href="#" class="list-menu-item">Header</a></li>
+					<li><a href="#" class="list-menu-item">Footer</a></li>
+				</ul>
+			</li>
+
+			<li class="list-menu-heading" data-toggle="collapse" href="#admin-collapse-3" aria-expanded="false" aria-controls="admin-collapse-3">
+				<span class="badge badge-info">5</span><h6><i class="lnr-users2 ico"></i>Users</h6>
+			</li>
+			<li class="list-sub-menu collapse" id="admin-collapse-3">
+				<ul class="list-sub-menu">
+					<li>
+						<a href="#" class="list-menu-item menu-add">New User</a>
+					</li>
+				</ul>
+			</li>
+
+			<li class="list-menu-link">
+				<h6><a href="#"><i class="lnr-equalizer ico"></i>Settings</a></h6>
+			</li>
+		</ul>
+	</aside>
+	<section id="admin-content">
+		<form>
+			<div class="d-flex flex-xs-column flex-sm-column flex-lg-column flex-xl-row justify-content-start align-items-stretch">
+				<div class="mb-s">
+					<div class="form-group mb-xs">
+						<input type="text" class="form-control form-control-lg pl-s" placeholder="Page title" name="title" autocapitalize="off" autocomplete="off" />
+					</div>
+					<div class="input-group mb-l">
+						<span class="input-group-addon"><i class="lnr-earth"></i></span>
+						<input type="text" class="form-control" placeholder="/page-url" readonly />
+						<button class="btn btn-secondary" type="button"><i class="lnr-pencil"></i></button>
+					</div>
+
+					<div class="card bgc-white pt-l pr-l pl-l">
+						{{#loop 1 3 1}}
+						<div class="pb-l">{{lipsum 0 1000}}</div>
+						{{/loop}}
+					</div>
+				</div>
+				<aside>
+					<div class="mb-l">
+						<button type="button" class="btn btn-primary btn-block btn-lg text-uppercase">Save Page</button>
+					</div>
+
+					{{> admin-template-select }}
+
+					<div class="mb-l">{{> admin-publish }}</div>
+
+					{{> admin-unpublish }}
+
+				</aside>
+			</div>
+		</form>
+	</section>
+</main>
