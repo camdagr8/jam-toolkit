@@ -160,19 +160,18 @@ $admin-menu-padding: px2rem(10) px2rem(10) px2rem(10) px2rem(20);
 }
 
 #admin-content {
-
-	flex-grow: 1;
+	width: 100%;
 	padding: px2rem(50);
 
-	> div {
-		flex-grow: 1;
-		min-width: 1024px;
-	}
+	.d-flex {
+		>:first-child {
+			flex-grow: 1;
+		}
 
-	aside {
-		flex-grow: 1;
-		padding-left: 50px;
-		min-width: 400px;
+		aside {
+			padding-left: 50px;
+			min-width: 400px;
+		}
 	}
 
 	form {

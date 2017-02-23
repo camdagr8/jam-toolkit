@@ -79,7 +79,7 @@ $(function () {
 	});
 
 	/**
-	 * Radio toggles
+	 * Status toggles
 	 */
 	$('input[name="publish"], input[name="unpublish"]').on('change', function (e) {
 
@@ -153,10 +153,11 @@ $(function () {
 
 		if (t.length > 0) {
 			var v = !t.prop(p);
-			console.log(v);
 			t.prop(p, v);
 		}
 	});
 
+
+	$('[data-wysiwyg]').trumbowyg({autogrow: true});
 
 });
