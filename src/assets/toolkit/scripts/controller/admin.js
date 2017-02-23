@@ -83,6 +83,11 @@ $(function () {
 	 */
 	$('input[name="publish"], input[name="unpublish"]').on('change', function (e) {
 
+		// If unpublish input
+		if (this.name === 'unpublish') {
+			$('input[name="unpublish"]').not($(this)).prop('checked', false);
+		}
+
 		// If value is delete -> uncheck publish elements
 		if (this.value === 'delete' && this.checked === true) {
 			$('input[name="publish"]').prop('checked', false).change();
