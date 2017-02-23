@@ -79,41 +79,48 @@ $(function () {
 	});
 
 	/**
-	 * Publish later toggle
-	 */
-	$('#publish-later').hide();
-	$(document).on('change', 'input[name="publish"]', function () {
-		var t = $('#publish-later');
-
-		if (this.value === 'later' && $(this).is(':checked')) {
-			t.slideDown(200);
-		} else {
-			t.slideUp(250);
-		}
-	});
-
-	/**
 	 * Radio toggles
 	 */
+	$('input[name="publish"], input[name="unpublish"]').on('change', function (e) {
+
+		// If value is delete -> uncheck publish elements
+		if (this.value === 'delete' && this.checked === true) {
+			$('input[name="publish"]').prop('checked', false).change();
+		}
+
+		// Uncheck delete if checking the publish radios
+		if (this.name === 'publish' && this.checked === true) {
+			$('input[name="unpublish"][value="delete"]').prop('checked', false).change();
+		}
+
+		// Slide up/down [data-toggle="check"] elements
+		var sibs = $('[data-toggle="check"] input[name="'+this.name+'"]');
+			sibs.each(function () {
+				var t = $(this).data('target');
+				if (t) {
+					if (this.checked === true) {
+						$(t).slideDown(200);
+					} else {
+						$(t).slideUp(200);
+					}
+				}
+			});
+
+	});
+
 	$(document).on('change', '[data-toggle="check"] input', function () {
 
-		var par = $(this).closest('[data-toggle="check"]');
-
-		if (this.type === 'radio') {
-			if (par.length > 0) {
-				par.find('label').removeClass('active');
-				par.find('input').attr('aria-checked', 'false');
-			}
-		}
-
-		if ($(this).is(':checked')) {
-			$(this).closest('label').addClass('active');
-			$(this).attr('aria-checked', 'true');
-		} else {
-			$(this).closest('label').removeClass('active');
-			$(this).attr('aria-checked', 'false');
-		}
-
+		// Update siblings
+		var sibs = $('[data-toggle="check"] input[name="'+this.name+'"]');
+			sibs.each(function () {
+				if (this.checked) {
+					$(this).closest('label').addClass('active');
+					$(this).attr('aria-checked', 'true');
+				} else {
+					$(this).closest('label').removeClass('active');
+					$(this).attr('aria-checked', 'false');
+				}
+			});
 	});
 
 	$(document).on('keyup', '[data-toggle="check"] label', function (e) {
@@ -127,17 +134,22 @@ $(function () {
 
 	$('[data-toggle="check"] input:checked').change();
 
+	$('[data-toggle="slide"]').each(function () {
+		var t = $(this).data('target');
+			t = $(t);
+			t.hide();
+	});
 
+	$('[data-toggle="attr"]').on('click', function (e) {
+		var p = $(this).data('attr') || 'disabled';
 
-	/**
-	 * Datepicker
-	 */
-	$('[data-datepicker]').datepicker({
-		todayHighlight: true,
-		autoclose: true,
-		templates: {
-			leftArrow: '<i class="lnr-chevron-left"></i>',
-			rightArrow: '<i class="lnr-chevron-right"></i>'
+		var t = $(this).data('target');
+			t = $(this).parents().find(t).first();
+
+		if (t.length > 0) {
+			var v = !t.prop(p);
+			console.log(v);
+			t.prop(p, v);
 		}
 	});
 

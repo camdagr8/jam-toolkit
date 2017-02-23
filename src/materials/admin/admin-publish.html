@@ -1,5 +1,5 @@
-<div class="card card-shadow bgc-white bd-0">
-	<h6 class="card-header" style="margin-bottom: -1px;"><i class="lnr-paper-plane ico"></i> Publish</h6>
+<div class="card card-shadow bgc-white bd-0" id="admin-status">
+	<h6 class="card-header" style="margin-bottom: -1px;"><i class="lnr-paper-plane ico"></i> Status</h6>
 	<ul class="list-group list-group-flush" data-toggle="check">
 		<li class="list-group-item">
 			<label class="check" tabindex="0">
@@ -9,21 +9,41 @@
 		</li>
 		<li class="list-group-item">
 			<label class="check" tabindex="0">
-				Now
-				<input type="radio" name="publish" autocomplete="off" class="hidden-xs-up" value="now" aria-checked="false" />
+				Publish
+				<input type="radio" name="publish" autocomplete="off" class="hidden-xs-up" value="publish" aria-checked="false" />
 			</label>
 		</li>
 		<li class="list-group-item">
 			<label class="check" tabindex="0">
-				Later
-				<input type="radio" name="publish" autocomplete="off" class="hidden-xs-up" value="later" aria-checked="false" data-target="#publish-later" />
+				Publish Later
+				<input type="radio" name="publish" autocomplete="off" class="hidden-xs-up" value="publish-later" aria-checked="false" data-toggle="slide" data-target="#publish-later" />
 			</label>
 		</li>
-		<li class="list-group-item" id="publish-later">
+		<li class="list-group-item" id="publish-later" data-toggle-target>
 			<div class="input-group">
 				<input type="text" class="form-control" name="publish-date" data-datepicker />
 				<span class="input-group-addon"><i class="lnr-calendar-31"></i></span>
 			</div>
+		</li>
+	</ul>
+	<ul class="list-group list-group-flush" data-toggle="check">
+		<li class="list-group-item">
+			<label class="check" tabindex="0">
+				Unpublish Later
+				<input type="radio" name="unpublish" autocomplete="off" class="hidden-xs-up" value="delete-later" aria-checked="false" data-toggle="slide" data-target="#unpublish-later" />
+			</label>
+		</li>
+		<li class="list-group-item" id="unpublish-later" data-toggle-target>
+			<div class="input-group">
+				<input type="text" class="form-control" name="unpublish-date" data-datepicker />
+				<span class="input-group-addon"><i class="lnr-calendar-31"></i></span>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<label class="check" tabindex="0">
+				Delete
+				<input type="radio" name="unpublish" autocomplete="off" class="hidden-xs-up" value="delete" aria-checked="false" />
+			</label>
 		</li>
 	</ul>
 </div>

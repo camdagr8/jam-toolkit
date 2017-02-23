@@ -78,10 +78,11 @@
 					<div class="form-group mb-xs">
 						<input type="text" class="form-control form-control-lg pl-s" placeholder="Page title" name="title" autocapitalize="off" autocomplete="off" />
 					</div>
-					<div class="input-group mb-l">
-						<span class="input-group-addon"><i class="lnr-earth"></i></span>
-						<input type="text" class="form-control" placeholder="/page-url" readonly />
-						<button class="btn btn-secondary" type="button"><i class="lnr-pencil"></i></button>
+					<div id="admin-routes">
+						<div class="input-group mb-l">
+							<input type="text" class="form-control" placeholder="/page-url" name="route" />
+							<button class="btn btn-primary" type="button"><i class="lnr-plus"></i></button>
+						</div>
 					</div>
 
 					<div class="card bgc-white pt-l pr-l pl-l">
@@ -95,11 +96,9 @@
 						<button type="button" class="btn btn-primary btn-block btn-lg text-uppercase">Save Page</button>
 					</div>
 
-					{{> admin-template-select }}
+					<div class="mb-l">{{> admin-template-select }}</div>
 
 					<div class="mb-l">{{> admin-publish }}</div>
-
-					{{> admin-unpublish }}
 
 				</aside>
 			</div>
