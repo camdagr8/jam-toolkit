@@ -3,15 +3,16 @@
  * Install page styles
  */
 $admin-menu-padding: px2rem(10) px2rem(10) px2rem(10) px2rem(20);
-
+$admin-menu-width: px2rem(240);
+$admin-header-height: px2rem(46);
 .admin {
 	position: relative;
 	$input-border-radius: 0;
 }
 
 #admin-menu {
-	width: 240px;
-	min-width: 240px;
+	width: $admin-menu-width;
+	min-width: $admin-menu-width;
 	transition: width .25s ease-in-out;
 
 	.badge {
@@ -171,6 +172,10 @@ $admin-menu-padding: px2rem(10) px2rem(10) px2rem(10) px2rem(20);
 		aside {
 			padding-left: 50px;
 			min-width: 400px;
+
+			@include media-breakpoint-down(md) {
+				min-width: 300px;
+			}
 		}
 	}
 
@@ -190,7 +195,7 @@ $admin-menu-padding: px2rem(10) px2rem(10) px2rem(10) px2rem(20);
 
 	@include media-breakpoint-down(md) {
 		#admin-menu {
-			margin-left: -240px;
+			margin-left: -#{$admin-menu-width};
 		}
 
 		#admin-content {
@@ -212,7 +217,11 @@ $admin-menu-padding: px2rem(10) px2rem(10) px2rem(10) px2rem(20);
 	}
 }
 
-#admin-routes .btn {
-	width: 40px;
-	padding: 0;
+#admin-routes,
+#admin-routes-req {
+	.btn {
+		width: 46px;
+		padding: 0;
+		padding-top: px2rem(3);
+	}
 }

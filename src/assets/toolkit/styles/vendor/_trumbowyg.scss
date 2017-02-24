@@ -18,15 +18,7 @@ $modal-reset-color: #EEE !default;
 $transition-duration: 150ms !default;
 
 #trumbowyg-icons {
-    overflow: hidden;
-    visibility: hidden;
-    height: 0;
-    width: 0;
-
-    svg {
-        height: 0;
-        width: 0;
-    }
+    display: none;
 }
 
 .trumbowyg-box {

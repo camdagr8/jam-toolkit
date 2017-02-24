@@ -19,7 +19,7 @@ $raleway-weights: (
 
 @each $key, $value in $raleway-weights {
 	.raleway-#{$key} {
-		@extend .raleway;
+		font-family: 'Raleway', sans-serif;
 		font-weight: $value;
 	}
 };

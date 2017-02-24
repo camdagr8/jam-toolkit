@@ -1,4 +1,47 @@
-header.header-default {
-	z-index: 100000;
-	width: 100%;
+header.header {
+
+	&-default {
+		z-index: 100000;
+		width: 100%;
+	}
+
+	&-admin {
+
+		button {
+			&:focus {
+				outline: none;
+			}
+		}
+
+		.navbar {
+			position: relative;
+			padding: 8px 16px;
+			height: 46px;
+		}
+
+		.navbar-toggler-right {
+			top: 50%;
+			right: 0;
+			position: absolute;
+			transform: translateY(-50%);
+		}
+
+		.navbar-brand {
+			@extend .raleway-light;
+
+			position: relative;
+			font-size: px2rem(15);
+			text-transform: uppercase;
+			padding-left: px2rem(35);
+
+			.logo {
+				position: absolute;
+				top: -1px;
+				left: -5px;
+				padding: 2px;
+				width: px2rem(32);
+				background-color: $white;
+			}
+		}
+	}
 }

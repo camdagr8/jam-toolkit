@@ -4,11 +4,11 @@
 	"body-class": "admin bgc-gray-lightest"
 }
 ---
-<header class="header header-default">
+<header class="header header-admin">
 	<nav class="navbar navbar-toggleable-md navbar-inverse bg-translucent">
-		<a class="navbar-brand" href="#"><img src="" />Jam</a>
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#header-toggle" aria-controls="header-toggle" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
+		<a class="navbar-brand" href="#"><img src="{{baseurl}}/assets/toolkit/images/logo.jpg" class="logo rounded-circle" /> Jam</a>
+		<button class="navbar-toggler navbar-toggler-right bd-0" type="button" data-target="#header-toggle" aria-controls="admin-menu" aria-expanded="false" aria-label="Toggle navigation">
+			<i class="lnr-menu"></i>
 		</button>
 
 		<div class="collapse navbar-collapse" id="header-toggle">
@@ -72,33 +72,43 @@
 		</ul>
 	</aside>
 	<section id="admin-content">
-		<form>
+		<form id="admin-form" action="/" method="post">
 			<div class="d-flex flex-xs-column flex-sm-column flex-lg-column flex-xl-row justify-content-start align-items-stretch">
 				<div class="mb-s">
-					<div class="form-group mb-xs">
-						<input type="text" class="form-control form-control-lg pl-s" placeholder="Page title" name="title" autocapitalize="off" autocomplete="off" />
+					<div class="input-group mb-xs">
+						<span class="input-group-addon bgc-white" style="width: 46px;"><i class="lnr-file-empty"></i></span>
+						<input type="text" class="form-control form-control-lg pl-s" placeholder="Page title" name="title" autocomplete="off" />
 					</div>
-					<div id="admin-routes">
-						<div class="input-group mb-l">
-							<input type="text" class="form-control" placeholder="/page-url" name="route" />
-							<button class="btn btn-primary" type="button"><i class="lnr-plus"></i></button>
-						</div>
-					</div>
-					{{> wysiwyg-icons }}
-					<textarea name="body" data-wysiwyg></textarea>
 
+					<div id="admin-routes-req" class="input-group">
+						<span class="input-group-addon bgc-white" style="width: 46px;"><i class="lnr-link2"></i></span>
+						<input type="text" class="form-control pl-s" placeholder="/page-url" name="routes" required data-slug="blur" autocapitalize="off" autocomplete="off" autocorrect="off" />
+						<button class="btn btn-primary" type="button" data-clone="#route-hbs" data-target="#admin-routes"><i class="lnr-plus"></i></button>
+					</div>
+					<div id="admin-routes" class="mb-l"></div>
+
+					<textarea name="body" placeholder="Page Content" data-wysiwyg></textarea>
 				</div>
 				<aside>
-					<div class="mb-l">
-						<button type="button" class="btn btn-primary btn-block btn-lg text-uppercase">Save Page</button>
-					</div>
-
 					<div class="mb-l">{{> admin-template-select }}</div>
 
 					<div class="mb-l">{{> admin-publish }}</div>
 
+					<div class="mb-l">
+						<button type="button" class="btn btn-primary btn-block btn-lg text-uppercase" data-submit='{"active": "Saving..."}'>Save Page</button>
+					</div>
 				</aside>
 			</div>
 		</form>
 	</section>
 </main>
+
+<script id="route-hbs" type="text/x-handlebars-template">
+	<div class="input-group mt-xs">
+		<button class="btn btn-secondary bd-r-0" type="button" data-target=".input-group" data-remove><i class="lnr-cross"></i></button>
+		<input type="text" class="form-control pl-s" placeholder="/page-url" autocapitalize="off" autocomplete="off" autocorrect="off" name="routes" data-slug="blur" />
+		<button class="btn btn-primary bd-l-0" type="button" data-clone="#route-hbs" data-target="#admin-routes"><i class="lnr-plus"></i></button>
+	</div>
+</script>
+
+{{> wysiwyg-icons }}
