@@ -29,6 +29,8 @@ $admin-header-height: px2rem(46);
 		list-style: none;
 
 		a {
+			outline: none;
+
 			&,
 			&:hover,
 			&:focus,

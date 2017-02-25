@@ -24,25 +24,30 @@ const config = {
     fabricator: {
       src: 'src/assets/fabricator/styles/fabricator.scss',
       dest: 'dist/assets/fabricator/styles',
-      watch: 'src/assets/fabricator/styles/**/*.scss',
+      watch: 'src/assets/fabricator/styles/**/*.scss'
     },
     toolkit: {
       src: 'src/assets/toolkit/styles/toolkit.scss',
       dest: 'dist/assets/toolkit/styles',
-      watch: 'src/assets/toolkit/styles/**/*.scss',
+      watch: 'src/assets/toolkit/styles/**/*.scss'
     },
   },
   scripts: {
     fabricator: {
       src: './src/assets/fabricator/scripts/fabricator.js',
       dest: 'dist/assets/fabricator/scripts',
-      watch: 'src/assets/fabricator/scripts/**/*',
+      watch: 'src/assets/fabricator/scripts/**/*'
     },
     toolkit: {
       src: './src/assets/toolkit/scripts/toolkit.js',
       dest: 'dist/assets/toolkit/scripts',
-      watch: 'src/assets/toolkit/scripts/**/*',
+      watch: 'src/assets/toolkit/scripts/**/*'
     },
+	admin: {
+	  src: './src/assets/toolkit/scripts/admin.js',
+      dest: 'dist/assets/toolkit/scripts',
+      watch: 'src/assets/toolkit/scripts/**/*'
+	},
     vendor: {
       dest: 'dist/assets/toolkit/scripts',
       watch: 'src/assets/toolkit/scripts/vendor/**/*'
@@ -52,7 +57,7 @@ const config = {
     toolkit: {
       src: ['src/assets/toolkit/images/**/*', 'src/favicon.ico'],
       dest: 'dist/assets/toolkit/images',
-      watch: 'src/assets/toolkit/images/**/*',
+      watch: 'src/assets/toolkit/images/**/*'
     }
   },
   fonts: {
@@ -61,9 +66,9 @@ const config = {
     watch: 'src/assets/fonts/**/*'
   },
   templates: {
-    watch: 'src/**/*.{html,md,json,yml}',
+    watch: 'src/**/*.{html,md,json,yml}'
   },
-  dest: 'dist',
+  dest: 'dist'
 };
 
 

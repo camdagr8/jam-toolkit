@@ -1,6 +1,5 @@
 require('./prism');
 require('./colors');
-
 require('./search');
 
 /**

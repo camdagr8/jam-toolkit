@@ -30,17 +30,15 @@ header.header {
 			@extend .raleway-light;
 
 			position: relative;
+			margin-left: -4px;
 			font-size: px2rem(15);
 			text-transform: uppercase;
-			padding-left: px2rem(35);
+			padding-right: 10px;
 
 			.logo {
-				position: absolute;
-				top: -1px;
-				left: -5px;
-				padding: 2px;
 				width: px2rem(32);
 				background-color: $white;
+				margin-right: 5px;
 			}
 		}
 	}

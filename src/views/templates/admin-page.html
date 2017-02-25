@@ -1,7 +1,8 @@
 ---
 {
 	"title": "Admin: New Page",
-	"body-class": "admin bgc-gray-lightest"
+	"body-class": "admin bgc-gray-lightest",
+	"admin": true
 }
 ---
 <header class="header header-admin">
@@ -95,7 +96,12 @@
 					<div class="mb-l">{{> admin-publish }}</div>
 
 					<div class="mb-l">
-						<button type="button" class="btn btn-primary btn-block btn-lg text-uppercase" data-submit='{"active": "Saving..."}'>Save Page</button>
+						<button
+							type="button"
+							class="btn btn-primary btn-block btn-lg text-uppercase"
+							data-label="Save Page"
+							data-confirm="Are you sure?"
+							data-submit='{"active": "Saving..."}'>Save Page</button>
 					</div>
 				</aside>
 			</div>

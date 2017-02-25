@@ -30,4 +30,24 @@ $(function () {
            rightArrow: '<i class="lnr-chevron-right"></i>'
        }
    });
+
+   /**
+    * Wysiwyg
+    */
+   $('[data-wysiwyg]').trumbowyg({
+		autogrow: true,
+		removeformatPasted: true,
+		btns: [
+			['viewHTML'],
+			['formatting'],
+			'btnGrp-semantic',
+			['superscript', 'subscript'],
+			'btnGrp-justify',
+			'btnGrp-lists',
+			['horizontalRule'],
+			['removeformat'],
+			['plugin'],
+			['fullscreen']
+		]
+	});
 });

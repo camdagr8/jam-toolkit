@@ -171,6 +171,19 @@ $(function () {
 			});
 	});
 
+	$(document).on('change', 'input[name="unpublish"]', function (e) {
+		var btn = $('[data-submit]');
+		if (btn.length) {
+			if (this.checked !== true || this.value !== 'delete') {
+				btn.removeClass('btn-danger').addClass('btn-primary');
+				btn.text(btn.data('label'));
+			} else {
+				btn.removeClass('btn-primary').addClass('btn-danger');
+				btn.text(btn.data('confirm'));
+			}
+		}
+	});
+
 	$(document).on('keydown', '[data-toggle="check"] label', function (e) {
 
 		var k = e.which || e.keyCode;
@@ -202,22 +215,6 @@ $(function () {
 		}
 	});
 
-	$('[data-wysiwyg]').trumbowyg({
-		autogrow: true,
-		removeformatPasted: true,
-		btns: [
-			['viewHTML'],
-			['formatting'],
-			'btnGrp-semantic',
-			['superscript', 'subscript'],
-			'btnGrp-justify',
-			'btnGrp-lists',
-			['horizontalRule'],
-			['removeformat'],
-			['plugin'],
-			['fullscreen']
-		]
-	});
 
 	$(document).on('click', '[data-clone]', function (e) {
 		var t = $(this).data('target');

@@ -46,9 +46,15 @@
   <script src="{{baseurl}}/assets/toolkit/scripts/vendor.js"></script>
   <!--/vendor scripts -->
 
-	<!-- toolkit scripts -->
-	<script src="{{baseurl}}/assets/toolkit/scripts/toolkit.js"></script>
-	<!-- /toolkit scripts -->
+  <!-- toolkit scripts -->
+  <script src="{{baseurl}}/assets/toolkit/scripts/toolkit.js"></script>
+  <!-- /toolkit scripts -->
+
+
+  <!-- special cases -->
+  {{#if admin}}
+  <script src="{{baseurl}}/assets/toolkit/scripts/admin.js"></script>
+  {{/if}}
 
 </body>
 </html>
