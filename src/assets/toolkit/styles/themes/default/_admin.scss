@@ -220,9 +220,8 @@ $admin-header-height: px2rem(46);
 }
 
 #admin-routes,
-#admin-routes-req {
+.input-group {
 	.btn {
-		width: 46px;
 		padding: 0;
 		padding-top: px2rem(3);
 	}
