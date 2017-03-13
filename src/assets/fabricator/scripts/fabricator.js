@@ -1,5 +1,6 @@
 require('./prism');
 require('./colors');
+
 require('./search');
 
 /**
@@ -9,9 +10,9 @@ require('./search');
 const fabricator = window.fabricator = {};
 
 
-var creative = require('./creative');
-var uploader = require('./uploader');
-
+const creative = require('./creative');
+const uploader = require('./uploader');
+const menu = require('./menu');
 
 /**
  * Default options
@@ -20,7 +21,7 @@ var uploader = require('./uploader');
 fabricator.options = {
   toggles: {
     labels: true,
-    notes: true,
+    notes: false,
     code: false,
   },
   menu: false,
@@ -297,8 +298,8 @@ fabricator.bindCodeAutoSelect = () => {
   for (let i = codeBlocks.length - 1; i >= 0; i--) {
     codeBlocks[i].addEventListener('click', select.bind(this, codeBlocks[i]));
   }
-
   */
+
 };
 
 
@@ -340,6 +341,7 @@ fabricator.setInitialMenuState = () => {
 document.addEventListener("DOMContentLoaded", function(event) {
   creative.init();
   uploader.init().directories();
+  menu.init();
 });
 
 
@@ -348,7 +350,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
  */
 fabricator
  .setInitialMenuState()
- .menuToggle()
  .allItemsToggles()
  .singleItemToggle()
  .buildColorChips()

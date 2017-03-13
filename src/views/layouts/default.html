@@ -4,7 +4,7 @@
 
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<title>{{title}}</title>
 
@@ -30,11 +30,13 @@
 	{{> f-icons}}
 	{{> f-menu}}
 	<div class="f-container">
-		{{> f-control-bar}}
+
 	{{/if}}
 
 
+
 	{% body %}
+
 
 
 	{{#if fabricator}}
@@ -46,15 +48,10 @@
   <script src="{{baseurl}}/assets/toolkit/scripts/vendor.js"></script>
   <!--/vendor scripts -->
 
-  <!-- toolkit scripts -->
-  <script src="{{baseurl}}/assets/toolkit/scripts/toolkit.js"></script>
-  <!-- /toolkit scripts -->
-
-
-  <!-- special cases -->
-  {{#if admin}}
-  <script src="{{baseurl}}/assets/toolkit/scripts/admin.js"></script>
-  {{/if}}
+	<!-- toolkit scripts -->
+	<script src="{{baseurl}}/assets/toolkit/scripts/toolkit.js"></script>
+	<script src="{{baseurl}}/assets/toolkit/scripts/admin.js"></script>
+	<!-- /toolkit scripts -->
 
 </body>
 </html>

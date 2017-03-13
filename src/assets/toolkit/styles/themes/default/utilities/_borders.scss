@@ -6,26 +6,11 @@
     .bd-b-#{$i} { border-bottom: none !important; }
     .bd-l-#{$i} { border-left: none !important; }
   } @else {
-    .bd-#{$i} {
-      border-width: #{$i}px !important;
-      border-style: solid;
-    }
-    .bd-t-#{$i} {
-      border-top-width: #{$i}px !important;
-      border-top-style: solid;
-    }
-    .bd-r-#{$i} {
-      border-right-width: #{$i}px !important;
-      border-right-style: solid;
-    }
-    .bd-b-#{$i} {
-      border-bottom-width: #{$i}px !important;
-      border-bottom-style: solid;
-    }
-    .bd-l-#{$i} {
-      border-left-width: #{$i}px !important;
-      border-left-style: solid;
-    }
+    .bd-#{$i} { border: #{$i}px solid; }
+    .bd-t-#{$i} { border-top: #{$i}px solid; }
+    .bd-r-#{$i} { border-right: #{$i}px solid; }
+    .bd-b-#{$i} { border-bottom: #{$i}px solid; }
+    .bd-l-#{$i} { border-left: #{$i}px solid; }
   }
 
 }

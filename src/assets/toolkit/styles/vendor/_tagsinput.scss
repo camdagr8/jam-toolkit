@@ -1,8 +1,6 @@
 .tagsinput {
 
-  @if $enable-rounded {
-    @extend .rounded;
-  }
+  @extend .rounded;
   border: 1px solid $input-border-color;
   width: 100% !important;
   height: 200px !important;

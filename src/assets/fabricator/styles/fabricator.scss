@@ -7,10 +7,13 @@
 $settings: (
 	theme: light,
 	accent: hsl(0, 0%, 46%),
-	menu-width: 220px
+	menu-width: 240px,
+	navbar-width: 92px
 );
 
 @import 'partials/variables';
+@import 'partials/table';
+@import 'partials/docs';
 @import 'partials/code';
 @import 'partials/color-chips';
 @import 'partials/controls';
@@ -22,4 +25,4 @@ $settings: (
 @import 'partials/creative';
 @import 'partials/uploader';
 @import 'partials/notes';
-@import 'partials/typeography';
+@import 'partials/dependencies';
