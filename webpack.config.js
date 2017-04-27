@@ -62,8 +62,7 @@ module.exports = (config) => {
     target: 'node',
     entry: {
       'fabricator/scripts/f': config.scripts.fabricator.src,
-      'toolkit/scripts/toolkit': config.scripts.toolkit.src,
-      'toolkit/scripts/admin': config.scripts.admin.src
+      'toolkit/scripts/toolkit': config.scripts.toolkit.src
     },
     output: {
       path: path.resolve(__dirname, config.dest, 'assets'),

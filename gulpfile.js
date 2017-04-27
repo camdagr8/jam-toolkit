@@ -1,33 +1,31 @@
-const assembler = require('butter-assemble');
-const beautify = require('js-beautify').js_beautify;
-const browserSync = require('browser-sync');
-const csso = require('gulp-csso');
-const del = require('del');
-const fs = require('fs');
-const gulp = require('gulp');
-const gulpif = require('gulp-if');
-const gutil = require('gulp-util');
-const path = require('path');
-const prefix = require('gulp-autoprefixer');
-const reload = browserSync.reload;
-const rename = require('gulp-rename');
-const runSequence = require('run-sequence');
-const sass = require('gulp-sass');
-const slugify = require('slugify');
-const source = require('vinyl-source-stream');
-const sourcemaps = require('gulp-sourcemaps');
-const webpack = require('webpack');
-
-
 /**
- * ------------------------------------------------------------------------
- * CUSTOM INCLUDES
- * ------------------------------------------------------------------------
+ * -----------------------------------------------------------------------------
+ * Imports
+ * -----------------------------------------------------------------------------
  */
-const concat = require('gulp-concat'); 				// CAM: Used in vendor task
-const dna = require('fabricator-dna'); 				// CAM: Used for dependency injection
-const exc = require('butter-assemble-exclude'); 	// CAM: Used to exclude files from assemble
-
+const assembler      = require('butter-assemble');
+const beautify       = require('js-beautify').js_beautify;
+const browsersync    = require('browser-sync');
+const concat         = require('gulp-concat');
+const csso           = require('gulp-csso');
+const del            = require('del');
+const dna            = require('fabricator-dna');
+const exc            = require('butter-assemble-exclude');
+const fs             = require('fs');
+const gulp           = require('gulp');
+const gulpif         = require('gulp-if');
+const gutil          = require('gulp-util');
+const path           = require('path');
+const prefix         = require('gulp-autoprefixer');
+const reload         = browsersync.reload;
+const rename         = require('gulp-rename');
+const runSequence    = require('run-sequence');
+const sass           = require('gulp-sass');
+const slugify        = require('slugify');
+const source         = require('vinyl-source-stream');
+const sourcemaps     = require('gulp-sourcemaps');
+const webpack        = require('webpack');
+const nodemon        = require('nodemon');
 
 
 /**
@@ -38,6 +36,10 @@ const config = {
 	materials: ['src/materials/**/*'],
 	views: ['src/views/**/*', '!src/views/+(layouts)/**'],
 	dna: 'src/data/dependencies.json',
+    port: {
+        browsersync    : 3000,
+        proxy          : 3030
+    },
 	styles: {
 		browsers: 'last 1 version',
 		fabricator: {
@@ -65,11 +67,6 @@ const config = {
 		vendor: {
 			dest: 'dist/assets/toolkit/scripts',
 			watch: 'src/assets/toolkit/scripts/vendor/**/*'
-		},
-		admin: {
-			src: './src/assets/toolkit/scripts/admin.js',
-			dest: 'dist/assets/toolkit/scripts',
-			watch: 'src/assets/toolkit/scripts/**/*'
 		},
 		helpers: {
 			"cond": require('handlebars-cond').cond,
@@ -108,7 +105,7 @@ const config = {
 		'scripts',
 		'images',
 		'fonts',
-		'assembler',
+		'assembler'
 	],
 	dest: 'dist',
 	src: 'src',
@@ -242,51 +239,65 @@ gulp.task('assembler', (done) => {
 	done();
 });
 
+// nodemon -> start server and reload on change
+gulp.task('nodemon', (done) => {
+    if (!config.dev) { done(); return; }
+
+    let callbackCalled = false;
+    nodemon({
+        watch : config.dest,
+        script: __dirname + '/index.js',
+        ext: 'js ejs json jsx html css scss'
+    }).on('start', function () {
+        if (!callbackCalled) {
+            callbackCalled = true;
+            done();
+        }
+    }).on('restart', function () {
+        browsersync.reload();
+    });
+});
 
 // server
 gulp.task('serve', () => {
 
-	browserSync({
-		server: {
-			baseDir: config.dest,
-		},
-		notify: false,
-		logPrefix: 'FABRICATOR',
-	});
+    browsersync({
+        notify            : false,
+        timestamps        : true,
+        reloadDelay       : 2000,
+        reloadDebounce    : 2000,
+        logPrefix         : '00:00:00',
+        port              : config.port.browsersync,
+        ui                : {port: config.port.browsersync+1},
+        proxy             : 'localhost:'+config.port.proxy
+    });
 
 	gulp.task('styles:watch', ['styles']);
 	gulp.watch([config.styles.fabricator.watch, config.styles.toolkit.watch], ['styles:watch']);
 
-	gulp.task('scripts:watch', ['scripts'], browserSync.reload);
+	gulp.task('scripts:watch', ['scripts'], browsersync.reload);
 	gulp.watch([config.scripts.fabricator.watch, config.scripts.toolkit.watch], ['scripts:watch']);
 
-	gulp.task('images:watch', ['images'], browserSync.reload);
+	gulp.task('images:watch', ['images'], browsersync.reload);
 	gulp.watch(config.images.toolkit.watch, ['images:watch']);
-
-
-	/**
-	 * ------------------------------------------------------------------------
-	 * CUSTOM WATCHES
-	 * ------------------------------------------------------------------------
-	 */
 
 	/**
 	 * CAM: Added the 'dna' task to the assembler's watch so that when a file is
 	 * changed, it regens the dependencies.json file
 	 */
-	gulp.task('assembler:watch', ['dna', 'assembler'], browserSync.reload);
+	gulp.task('assembler:watch', ['dna', 'assembler'], browsersync.reload);
 	gulp.watch(config.templates.watch, ['assembler:watch']);
 
 	/**
 	 * CAM: Added so that we can get an uncompiled js file with vendor scripts
 	 */
-	gulp.task('vendor:watch', ['vendor'], browserSync.reload);
+	gulp.task('vendor:watch', ['vendor'], browsersync.reload);
 	gulp.watch(config.scripts.vendor.watch, ['vendor:watch']);
 
 	/**
 	 * CAM: Added so that we can get the fonts copied into the dist directory
 	 */
-	gulp.task('fonts:watch', ['fonts'], browserSync.reload);
+	gulp.task('fonts:watch', ['fonts'], browsersync.reload);
 	gulp.watch(config.fonts.watch, ['fonts:watch']);
 
 });
@@ -307,57 +318,57 @@ gulp.task('serve', () => {
  * @property --dna The DNA ID used for dependency checking.
  */
 const create_material = (params) => {
-	let name = params['name'];
-	if (!name) { return; }
+    let name = params['name'];
+    if (!name) { return; }
 
-	let type = params['type'] || 'TYPE';
-	let dna = params['dna'] || 'DNA-ID';
+    let type = params['type'] || 'TYPE';
+    let dna = params['dna'] || 'DNA-ID';
 
-	let id = slugify(String(name).toLowerCase());
+    let id = slugify(String(name).toLowerCase());
 
-	let mname = (dna !== 'DNA-ID') ? dna : id;
+    let mname = (dna !== 'DNA-ID') ? dna : id;
 
-	// Create the material file
-	let mpath = __dirname + '/' + config.src + '/materials/' + id;
+    // Create the material file
+    let dir = (params.hasOwnProperty('dir')) ? slugify(String(params.dir).toLowerCase()) : id;
+    let mpath = __dirname + '/' + config.src + '/materials/' + dir;
 
-	if (!fs.existsSync(mpath)) { fs.mkdirSync(mpath); }
+    if (!fs.existsSync(mpath)) { fs.mkdirSync(mpath); }
 
-	let mfile = mpath + '/' + mname +'.html';
-	let mat = `---
+    let mfile = mpath + '/' + mname +'.html';
+    let mat = `---
 		{
 		  "atomic": "${type}",
 		  "dna": "${dna}"
 		}
 		---
-		<div data-dna="${dna}"></div>`
+		<div data-dna="${dna}"></div>`;
 
-	mat = mat.replace(/\t/g, '');
+    mat = mat.replace(/\t/g, '');
 
-	fs.writeFileSync(mfile, mat);
+    fs.writeFileSync(mfile, mat);
 
-	// Create the view file
-	let vfile = __dirname + '/' + config.src + '/views/' + id + '.html';
-	if (!fs.existsSync(vfile)) {
-		let view = `---
+    // Create the view file
+    let vfile = __dirname + '/' + config.src + '/views/' + dir + '.html';
+    if (!fs.existsSync(vfile)) {
+        let view = `---
 			fabricator: true
-			title: "${name}"
+			title: "${dir}"
 			---
 
 			<h1 data-f-toggle="labels" class="mt-4">{{title}}</h1>
 
-			{{#each materials.${id}.items}}
+			{{#each materials.${dir}.items}}
 
 			{{> f-item this}}
 
-			{{/each}}`
+			{{/each}}`;
 
-		view = view.replace(/\t/g, '');
+        view = view.replace(/\t/g, '');
 
-		fs.writeFileSync(vfile, view);
-	}
+        fs.writeFileSync(vfile, view);
+    }
+};
 
-    return;
-}
 gulp.task('create:material', () => {
 
 	if (!gutil.env.name) { return; }
@@ -395,13 +406,11 @@ gulp.task('create:template', () => {
 
 	let tmp = `---
 		title: "${name}"
-		---`
+		---`;
 
 	tmp = tmp.replace(/\t/g, '');
 
 	fs.writeFileSync(file, tmp);
-
-	return;
 
 });
 
@@ -436,30 +445,25 @@ gulp.task('create:helper', () => {
 		---
 		<header class="mb-3">
 		  <h1>{{title}}</h1>
-		</header>`
+		</header>`;
 
 	tmp = tmp.replace(/\t/g, '');
 
 	fs.writeFileSync(file, tmp);
 
-	return;
-
 });
 
 // default build task
-gulp.task('default', ['clean'], () => {
-
-	// define build tasks
-	/**
-	 * CAM: ref. the config.tasks instead of the object that comes by default
-	 */
-	const tasks = config.tasks;
-
+gulp.task('default', (done) => {
 	// run build
-	runSequence(tasks, () => {
-		if (config.dev) {
-			gulp.start('serve');
-		}
-	});
-
+    if (config.dev) {
+        runSequence(['clean'], config.tasks, ['nodemon'], () => {
+            gulp.start('serve');
+            done();
+        });
+    } else {
+        runSequence(['clean'], config.tasks, () => {
+            done();
+        });
+    }
 });

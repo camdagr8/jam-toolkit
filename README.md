@@ -1,27 +1,31 @@
 # Butter
 
-<p align="center">
-  <img src="http://media3.giphy.com/media/nQYnLFII2sFcQ/giphy.gif" width="500">
-</p>
-
-> _butter_ - to make buttery by applying butter.
-
-Butter is a tool for building website UI toolkits - _think ["Custom Bootstrap, for Every Client"](http://daverupert.com/2013/04/responsive-deliverables/#tiny-bootstraps-for-every-client)_
-
+Butter, a tool for building atomic UI toolkits.
 
 ## Quick Start
 
-Just like every NPM module ever created.
-
-```shell
-$ npm install
-$ npm start
+Globally install the Butter CLI:
+```sh
+$ npm install -g brkfst-butter-cli
 ```
 
-The "start" command will start a local web server hosting the view on your development assets.
+Change directory to the folder where you want to install Butter:
+```sh
+$ cd /Development/Butter
+```
 
+Run the Butter-CLI `install` command:
+```sh
+$ butter install
+```
+> You will be prompted for an optional username and password which can be used to secure Butter with [Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication). If you do not wish to secure your butter URL simply press enter/return and skip the prompts. 
 
-## References
+Launch Butter by running the Butter-CLI `launch` command:
+```sh
+$ butter launch
+```
 
-http://bradfrost.com/blog/post/atomic-web-design/
+Butter should now be running in your browser and watching for changes to your toolkit files. The default url is: 
+`http://localhost:3000`
 
+> Head over to the [docs](https://github.com/reykjavikingur/breakfast-butter/wiki) for a deeper dive
