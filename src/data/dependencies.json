@@ -70,6 +70,26 @@
       },
       "dependencies": {}
     },
+    "src/materials/alerts/alert-dismiss.html": {
+      "dna": ["alert-dismissible"],
+      "id": "alert-dismissible",
+      "dependents": {
+        "src/materials/alerts/alert-growl.html": [".alert-dismissible"],
+        "src/materials/alerts/alert-warning.html": [".alert-dismissible"]
+      },
+      "dependencies": {
+        "src/materials/alerts/alert-warning.html": [".alert-warning"]
+      }
+    },
+    "src/materials/alerts/alert-growl.html": {
+      "dna": ["bootstrap-growl"],
+      "id": "bootstrap-growl",
+      "dependents": {},
+      "dependencies": {
+        "src/materials/alerts/alert-dismiss.html": [".alert-dismissible"],
+        "src/materials/alerts/alert-success.html": [".alert-success"]
+      }
+    },
     "src/materials/alerts/alert-info.html": {
       "dna": ["alert-info"],
       "id": "alert-info",
@@ -79,14 +99,20 @@
     "src/materials/alerts/alert-success.html": {
       "dna": ["alert-success"],
       "id": "alert-success",
-      "dependents": {},
+      "dependents": {
+        "src/materials/alerts/alert-growl.html": [".alert-success"]
+      },
       "dependencies": {}
     },
     "src/materials/alerts/alert-warning.html": {
       "dna": ["alert-warning"],
       "id": "alert-warning",
-      "dependents": {},
-      "dependencies": {}
+      "dependents": {
+        "src/materials/alerts/alert-dismiss.html": [".alert-warning"]
+      },
+      "dependencies": {
+        "src/materials/alerts/alert-dismiss.html": [".alert-dismissible"]
+      }
     },
     "src/materials/badges/00.badge-default.html": {
       "dna": ["badge-default"],

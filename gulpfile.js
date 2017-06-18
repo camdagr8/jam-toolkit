@@ -48,7 +48,7 @@ const config = {
 			watch: 'src/assets/fabricator/styles/**/*.scss',
 		},
 		toolkit: {
-			src: 'src/assets/toolkit/styles/toolkit.scss',
+			src: ['src/assets/toolkit/styles/toolkit.scss', 'src/assets/toolkit/styles/admin.scss'],
 			dest: 'dist/assets/toolkit/styles',
 			watch: 'src/assets/toolkit/styles/**/*.scss',
 		}
