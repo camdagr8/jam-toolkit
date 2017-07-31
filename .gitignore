@@ -6,3 +6,5 @@ dist
 .sass-cache
 .DS_Store
 manifest.yml
+test-audio.ogg
+test-video.mp4
