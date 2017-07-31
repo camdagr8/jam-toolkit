@@ -45,10 +45,21 @@
 
     <div class="card-media card-shadow mb-2 mr-2 mb-md-4 mr-md-4">
         <div class="card-media-video">
-            <video controls>
+            <video controls preload="none" poster="/assets/toolkit/images/fpo/waikiki.jpg">
                 <source src="/assets/toolkit/images/fpo/test-video.mp4" type="video/mp4">
                 Your browser does not support HTML5 video.
             </video>
+
+            <div class="card-media-info">
+                <div style="width: 100%">
+                    <div class="col-6 mx-auto mt-3">
+                        <button class="btn btn-sm btn-outline-primary btn-block txt-uppercase">Edit</button>
+                    </div>
+                </div>
+                <button type="button" class="card-media-delete btn btn-sm btn-outline-danger bd-0">
+                    <i class="lnr-cross"></i>
+                </button>
+            </div>
 
             <button type="button" class="card-media-delete btn btn-sm btn-outline-danger bd-0">
                 <i class="lnr-cross"></i>
