@@ -2,59 +2,55 @@
 <html lang="">
 <head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<title>{{title}}</title>
+    <title>{{title}}</title>
 
-	<!-- toolkit styles -->
-	<link rel="stylesheet" href="{{baseurl}}/assets/toolkit/styles/toolkit.css">
-	<!-- /toolkit styles -->
+    <!-- toolkit styles -->
+    <link rel="stylesheet" href="{{baseurl}}/assets/toolkit/styles/toolkit.css">
+    <!-- /toolkit styles -->
 
-    <!-- admin styles -->
+    <!-- toolkit styles -->
     <link rel="stylesheet" href="{{baseurl}}/assets/toolkit/styles/admin.css">
-    <!-- /admin styles -->
+    <!-- /toolkit styles -->
 
-	{{#if fabricator}}
-  <link rel="stylesheet" href="{{baseurl}}/assets/fabricator/styles/f.css">
-  <script type="text/javascript">
-
-    window.PROJECT = "{{toolkit.project}}";
-    window.RESTAPI = "{{toolkit.api}}";
-    window.FOLDER = "";
-
-  </script>
-  {{/if}}
+    {{#if fabricator}}
+    <link rel="stylesheet" href="{{baseurl}}/assets/fabricator/styles/f.css">
+    {{/if}}
 
 </head>
-<body class="{{body-class}}">
+<body>
 
-	{{#if fabricator}}
-	{{> f-icons}}
-	{{> f-menu}}
-	<div class="f-container">
+    {{#if fabricator}}
+    <div class="f-container" id="f-container">
+        {{> f-branding}}
+        {{> f-icons}}
+        {{> f-menu}}
+    {{/if}}
+    {% body %}
+    {{#if fabricator}}
+    </div>
+    {{/if}}
 
-	{{/if}}
+    <!-- vendor scripts -->
+    <script src="{{baseurl}}/assets/toolkit/scripts/vendor.js"></script>
+    <!--/vendor scripts -->
 
+    <!-- toolkit scripts -->
+    <script src="{{baseurl}}/assets/toolkit/scripts/toolkit.js"></script>
+    <!-- /toolkit scripts -->
 
+    {{#if fabricator}}
+    <!-- fabricator scripts -->
+    <script src="{{baseurl}}/assets/fabricator/scripts/f.js"></script>
+    <!-- /fabricator scripts -->
+    {{/if}}
 
-	{% body %}
-
-
-
-	{{#if fabricator}}
-	</div>
-	<script src="{{baseurl}}/assets/fabricator/scripts/f.js"></script>
-	{{/if}}
-
-  <!-- vendor scripts -->
-  <script src="{{baseurl}}/assets/toolkit/scripts/vendor.js"></script>
-  <!--/vendor scripts -->
-
-	<!-- toolkit scripts -->
-	<script src="{{baseurl}}/assets/toolkit/scripts/toolkit.js"></script>
-	<!-- /toolkit scripts -->
+    <!-- polyfill scripts -->
+    <script src="{{baseurl}}/assets/toolkit/scripts/polyfill.js"></script>
+    <!--/polyfill scripts -->
 
 </body>
 </html>

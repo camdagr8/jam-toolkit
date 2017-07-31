@@ -1,0 +1,133 @@
+/** media-card styles **/
+.card-media {
+
+    background-size        : cover;
+    background-position    : center;
+    background-repeat      : no-repeat;
+
+    overflow               : hidden;
+    position               : relative;
+    width                  : px2rem(400);
+    height                 : px2rem(300);
+    min-width              : px2rem(400);
+    min-height             : px2rem(300);
+    border                 : 8px solid $white;
+
+    @include media-breakpoint-down(xs) {
+        width         : px2rem(300);
+        height        : px2rem(225);
+        min-width     : px2rem(300);
+        min-height    : px2rem(225);
+    }
+
+    .label {
+        font-size           : px2rem(12);
+        position            : absolute;
+        bottom              : 0;
+        left                : 0;
+        padding             : 8px 0 2px 0;
+        width               : 100%;
+        height              : px2rem(24);
+        overflow            : hidden;
+        white-space         : nowrap;
+        text-align          : left;
+        background-color    : $white;
+        color               : $gray;
+        font-family         : monospace;
+    }
+
+    .card-media-info {
+        display             : flex;
+        justify-content     : center;
+        align-items         : center;
+        flex-direction      : column;
+
+        background-color    : rgba(255, 255, 255, .85);
+        transition          : opacity .25s ease-in-out;
+
+        position            : absolute;
+        overflow            : hidden;
+        width               : 100%;
+        height              : 100%;
+        top                 : 0;
+        left                : 0;
+        opacity             : 0;
+    }
+
+    .btn.card-media-delete {
+        position    : absolute;
+        right       : 0;
+        top         : 0;
+    }
+
+    .card-media-icon {
+        transition     : all .2s ease-in-out;
+        transform      : translate(-50%, -50%);
+        position       : absolute;
+        color          : $white;
+        left           : 50%;
+        top            : 50%;
+        z-index        : 0;
+
+        i {
+            font-size      : px2rem(100);
+            text-shadow    : 0 1px 1px $gray-light;
+        }
+
+        .label {
+            position: relative;
+            background-color: transparent;
+            color          : $gray;
+            text-align     : center;
+            font-family    : monospace;
+            font-size      : px2rem(12);
+        }
+    }
+
+    .card-media-audio,
+    .card-media-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding-bottom: px2rem(24);
+
+        .btn.card-media-delete {
+            display: none;
+        }
+
+        audio,
+        video {
+            background-color: $black;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &:hover,
+    &:focus,
+    &:active,
+    &.active {
+        .card-media-info {
+            opacity: 1;
+        }
+
+        .card-media-icon:not(.no-anime) {
+            top            : 35%;
+            color          : $gray;
+            text-shadow    : none;
+
+            .label {
+                opacity: 0;
+            }
+        }
+
+        .card-media-video,
+        .card-media-audio {
+            .btn.card-media-delete {
+                display: block;
+            }
+        }
+    }
+}

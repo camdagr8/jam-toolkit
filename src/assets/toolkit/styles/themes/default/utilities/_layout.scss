@@ -52,3 +52,11 @@ body {
         margin-bottom: 0;
     }
 }
+
+.nogrow {
+    flex-grow: 0 !important;
+}
+
+.nowrap {
+    white-space: nowrap;
+}

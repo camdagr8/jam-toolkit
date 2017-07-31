@@ -1,9 +1,13 @@
 .f-item-group {
 	@include clearfix;
-	margin-top: 3rem;
-	margin-bottom: 3rem;
-	padding-bottom: 3rem;
+	margin-top: 32px;
+	margin-bottom: 32px;
+	padding-bottom: 32px;
 	border-bottom: 1px solid color(light);
+
+    &:first-of-type {
+        //margin-top: 0;
+    }
 
 	&:last-child {
 		border-bottom: 0;
@@ -15,8 +19,8 @@
 	}
 
 	& > & {
-		padding-bottom: 1.5rem;
-		margin-bottom: 1.5rem;
+		padding-bottom: 32px;
+		margin-bottom: 32px;
 		border-bottom: 0;
 
 		&:first-of-type {
@@ -30,10 +34,6 @@
 	}
 }
 
-.f-item-code {
-	margin-top: 2rem;
-}
-
 .f-item-preview {
 	@include clearfix;
 }
@@ -44,7 +44,7 @@
 
 .f-item-heading-group {
 	@include clearfix;
-	margin-bottom: 2rem;
+	margin-bottom: 15px;
 	vertical-align: middle;
 }
 
@@ -54,17 +54,18 @@
 	display: inline-block;
 	vertical-align: middle;
 	line-height: 1;
+    font-size: 18px !important;
 }
 
 
 .f-item-controls {
 	display: inline-block;
 	vertical-align: middle;
-	margin-left: 0.5rem;
+	margin-left: 8px;
 
 	.f-control {
-		width: 0.875rem;
-		height: 0.875rem;
+		width: 16px;
+		height: 16px;
 		display: block;
 		float: left;
 
@@ -85,5 +86,14 @@
 }
 
 .f-item-notes {
-	font-size: 0.875rem;
+	font-size: 14px;
+}
+
+h1[data-f-toggle="labels"] {
+    margin-top: 32px;
+    font-size: 24px;
+
+    &:first-of-type {
+        margin-top: 0;
+    }
 }
