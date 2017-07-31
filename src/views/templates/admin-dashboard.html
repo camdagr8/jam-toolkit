@@ -1,0 +1,73 @@
+---
+{
+    "title": "Admin: Dashboard",
+    "body-class": "admin bgc-gray-lightest",
+    "admin": true
+}
+---
+<header class="header header-admin">
+    <nav class="navbar navbar-toggleable-md navbar-inverse bg-translucent">
+        <a class="navbar-brand" href="#"><img src="{{baseurl}}/assets/toolkit/images/logo.jpg" class="logo rounded-circle" /> Jam</a>
+        <button class="navbar-toggler navbar-toggler-right bd-0" type="button" data-target="#header-toggle" aria-controls="admin-menu" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="lnr-menu"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="header-toggle">
+            <ul class="navbar-nav ml-auto mt-2 mt-md-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"><i class="lnr-user mr-xs"></i> Sign out</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
+<main class="admin-container" role="main">
+    <aside id="admin-menu" class="bg-translucent bdc-inverse" aria-expanded="true">
+        <ul class="list-menu">
+            <li class="list-menu-heading active" data-toggle="collapse" href="#admin-collapse-1" aria-expanded="true" aria-controls="admin-collapse-1">
+                <span class="badge badge-info">20</span><h6><i class="lnr-document2 ico"></i>Pages</h6>
+            </li>
+            <li class="list-sub-menu collapse show" id="admin-collapse-1" aria-expanded="true">
+                <ul class="list-sub-menu collapse show" id="admin-collapse-1">
+                    <li>
+                        <a href="/templates/admin-page.html" class="list-menu-item menu-add">New Page</a>
+                    </li>
+                    <li><a href="#" class="list-menu-item">Cras justo odio</a></li>
+                    <li><a href="#" class="list-menu-item">Cras justo odio</a></li>
+                    <li><a href="#" class="list-menu-item">Cras justo odio</a></li>
+                    <li><a href="#" class="list-menu-item">Cras justo odio</a></li>
+                </ul>
+            </li>
+
+            <li class="list-menu-heading" data-toggle="collapse" href="#admin-collapse-2" aria-expanded="false" aria-controls="admin-collapse-2">
+                <span class="badge badge-info">99+</span><h6><i class="lnr-menu3 ico"></i>Navigation</h6>
+            </li>
+            <li class="list-sub-menu collapse" id="admin-collapse-2">
+                <ul class="list-sub-menu">
+                    <li><a href="#" class="list-menu-item">Header</a></li>
+                    <li><a href="#" class="list-menu-item">Footer</a></li>
+                </ul>
+            </li>
+
+            <li class="list-menu-heading" data-toggle="collapse" href="#admin-collapse-3" aria-expanded="false" aria-controls="admin-collapse-3">
+                <span class="badge badge-info">5</span><h6><i class="lnr-users2 ico"></i>Users</h6>
+            </li>
+            <li class="list-sub-menu collapse" id="admin-collapse-3">
+                <ul class="list-sub-menu">
+                    <li>
+                        <a href="#" class="list-menu-item menu-add">New User</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="list-menu-link">
+                <h6><a href="#"><i class="lnr-equalizer ico"></i>Settings</a></h6>
+            </li>
+        </ul>
+    </aside>
+    <section id="admin-content">
+    </section>
+</main>
+

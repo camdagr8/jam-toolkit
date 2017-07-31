@@ -1,35 +1,24 @@
+
 require('./prism');
 require('./colors');
-
 require('./search');
+require('./nanoscroll');
 
-/**
- * Global `fabricator` object
- * @namespace
- */
-const fabricator = window.fabricator = {};
-
-
-const creative = require('./creative');
-const uploader = require('./uploader');
-const menu = require('./menu');
+const fabricator    = window.fabricator = {};
+const menu          = require('./menu');
 
 /**
  * Default options
  * @type {Object}
  */
 fabricator.options = {
-  toggles: {
-    labels: true,
-    notes: false,
-    code: false,
-  },
-  menu: false,
-  mq: '(min-width: 60em)',
+    toggles: {
+        labels    : true,
+        notes     : false,
+        code      : false
+    }
 };
 
-// open menu by default if large screen
-fabricator.options.menu = window.matchMedia(fabricator.options.mq).matches;
 
 /**
  * Feature detection
@@ -56,135 +45,12 @@ if (fabricator.test.sessionStorage) {
 
 
 /**
- * Cache DOM
- * @type {Object}
- */
-fabricator.dom = {
-  root: document.querySelector('html'),
-  primaryMenu: document.querySelector('.f-menu'),
-  menuItems: document.querySelectorAll('.f-menu li a'),
-  menuToggle: document.querySelector('.f-menu-toggle'),
-};
-
-
-/**
  * Get current option values from session storage
  * @return {Object}
  */
 fabricator.getOptions = () => {
   return (fabricator.test.sessionStorage) ? JSON.parse(sessionStorage.fabricator) : fabricator.options;
 };
-
-
-/**
- * Build color chips
- */
-fabricator.buildColorChips = () => {
-
-  const chips = document.querySelectorAll('.f-color-chip');
-
-  for (let i = chips.length - 1; i >= 0; i--) {
-    const color = chips[i].querySelector('.f-color-chip__color').innerHTML;
-    chips[i].style.borderTopColor = color;
-    chips[i].style.borderBottomColor = color;
-  }
-
-  return fabricator;
-
-};
-
-
-/**
- * Add `f-active` class to active menu item
- */
-fabricator.setActiveItem = () => {
-
-  /**
-   * Match the window location with the menu item, set menu item as active
-   */
-  const setActive = () => {
-
-    // get current file and hash without first slash
-    const loc = (window.location.pathname + window.location.hash);
-    const current = loc.replace(/(^\/)([^#]+)?(#[\w\-\.]+)?$/ig, (match, slash, file, hash) => {
-      return (file || '') + (hash || '').split('.')[0];
-    }) || 'index.html';
-
-
-    // find the current section in the items array
-    for (let i = fabricator.dom.menuItems.length - 1; i >= 0; i--) {
-
-      const item = fabricator.dom.menuItems[i];
-
-      // get item href without first slash
-      const href = item.getAttribute('href').replace(/^\//g, '');
-
-      if (href === current) {
-        item.classList.add('f-active');
-      } else {
-        item.classList.remove('f-active');
-      }
-
-    }
-
-  };
-
-  window.addEventListener('hashchange', setActive);
-
-  setActive();
-
-  return fabricator;
-
-};
-
-
-/**
- * Click handler to primary menu toggle
- * @return {Object} fabricator
- */
-fabricator.menuToggle = () => {
-
-  // shortcut menu DOM
-  const toggle = fabricator.dom.menuToggle;
-  const options = fabricator.getOptions();
-
-  // toggle classes on certain elements
-  const toggleClasses = () => {
-    options.menu = !fabricator.dom.root.classList.contains('f-menu-active');
-    fabricator.dom.root.classList.toggle('f-menu-active');
-
-    if (fabricator.test.sessionStorage) {
-      sessionStorage.setItem('fabricator', JSON.stringify(options));
-    }
-  };
-
-  // toggle classes on ctrl + m press
-  document.onkeydown = (e) => {
-    if (e.ctrlKey && e.keyCode === 'M'.charCodeAt(0)) {
-      toggleClasses();
-    }
-  };
-
-  // toggle classes on click
-  toggle.addEventListener('click', () => {
-    toggleClasses();
-  });
-
-  // close menu when clicking on item (for collapsed menu view)
-  const closeMenu = () => {
-    if (!window.matchMedia(fabricator.options.mq).matches) {
-      toggleClasses();
-    }
-  };
-
-  for (let i = 0; i < fabricator.dom.menuItems.length; i++) {
-    fabricator.dom.menuItems[i].addEventListener('click', closeMenu);
-  }
-
-  return fabricator;
-
-};
-
 
 /**
  * Handler for preview and code toggles
@@ -193,9 +59,10 @@ fabricator.menuToggle = () => {
 fabricator.allItemsToggles = () => {
 
   const itemCache = {
-    labels: document.querySelectorAll('[data-f-toggle="labels"]'),
-    notes: document.querySelectorAll('[data-f-toggle="notes"]'),
-    code: document.querySelectorAll('[data-f-toggle="code"]'),
+      labels    : document.querySelectorAll('[data-f-toggle="labels"]'),
+      notes     : document.querySelectorAll('[data-f-toggle="notes"]'),
+      code      : document.querySelectorAll('[data-f-toggle="code"]'),
+      dna       : document.querySelectorAll('[data-f-toggle="dna"]'),
   };
 
   const toggleAllControls = document.querySelectorAll('.f-controls [data-f-toggle-control]');
@@ -280,78 +147,14 @@ fabricator.singleItemToggle = () => {
 
 
 /**
- * Automatically select code when code block is clicked
- */
-fabricator.bindCodeAutoSelect = () => {
-  /*
-
-  const codeBlocks = document.querySelectorAll('.f-item-code');
-
-  const select = (block) => {
-    const selection = window.getSelection();
-    const range = document.createRange();
-    range.selectNodeContents(block.querySelector('code'));
-    selection.removeAllRanges();
-    selection.addRange(range);
-  };
-
-  for (let i = codeBlocks.length - 1; i >= 0; i--) {
-    codeBlocks[i].addEventListener('click', select.bind(this, codeBlocks[i]));
-  }
-  */
-
-};
-
-
-/**
- * Open/Close menu based on session var.
- * Also attach a media query listener to close the menu when resizing to smaller screen.
- */
-fabricator.setInitialMenuState = () => {
-
-  // root element
-  const root = document.querySelector('html');
-
-  const mq = window.matchMedia(fabricator.options.mq);
-
-  // if small screen
-  const mediaChangeHandler = (list) => {
-    if (!list.matches) {
-      root.classList.remove('f-menu-active');
-    } else {
-      if (fabricator.getOptions().menu) {
-        root.classList.add('f-menu-active');
-      } else {
-        root.classList.remove('f-menu-active');
-      }
-    }
-  };
-
-  mq.addListener(mediaChangeHandler);
-  mediaChangeHandler(mq);
-
-  return fabricator;
-
-};
-
-
-/**
  * Page load listener
  */
-document.addEventListener("DOMContentLoaded", function(event) {
-  creative.init();
-  uploader.init().directories();
-  menu.init();
+document.addEventListener("DOMContentLoaded", function() {
+    menu.init();
 });
 
 
 /**
  * Initialization
  */
-fabricator
- .setInitialMenuState()
- .allItemsToggles()
- .singleItemToggle()
- .buildColorChips()
- .setActiveItem()
- .bindCodeAutoSelect();
+fabricator.allItemsToggles().singleItemToggle();
