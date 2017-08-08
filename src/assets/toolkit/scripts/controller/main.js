@@ -18,6 +18,9 @@ $(function () {
    */
   $('input[type="tags"]').tagsInput({delimiter: [',', ';', ' ']});
 
+  /** Range Slider **/
+  //$('input[type="range"]').rangeslider({polyfill: false});
+
 
   /**
     * Datepicker
@@ -50,4 +53,9 @@ $(function () {
 			['fullscreen']
 		]
 	});
+
+   // Modal
+    $(document).on('show.bs.modal', '.modal', function () {
+       $(this).appendTo('body');
+    });
 });

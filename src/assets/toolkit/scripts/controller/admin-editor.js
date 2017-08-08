@@ -318,7 +318,5 @@ $(function () {
 				data[item.name] = v;
 			}
 		}
-
-		console.log(data);
 	});
 });

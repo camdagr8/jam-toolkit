@@ -1,0 +1,102 @@
+---
+{
+    "atomic"     : "organism",
+    "dna"        : "media-modal",
+    "thumbs" : [
+        {"image": "/assets/toolkit/images/fpo/waikiki.jpg"},
+        {"image": "/assets/toolkit/images/fpo/1x1.png"},
+        {"image": "/assets/toolkit/images/fpo/2x1.png"},
+        {"image": "/assets/toolkit/images/fpo/1024x768.png"},
+        {"image": "/assets/toolkit/images/fpo/1920x1080.png"}
+    ]
+}
+---
+<button class="btn btn-primary" data-toggle="modal" data-target="#media-editor-modal">Media Modal</button>
+
+<div id="media-editor-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mediaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <h5 class="modal-title" id="mediaModalLabel">Media Editor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <i class="lnr-cross" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="d-flex align-items-stretch">
+                <div class="media-editor-left thumbs">
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            {{#each media-modal.thumbs}}
+                            <div class="swiper-slide{{#cond @index "===" 0}} active{{/cond}}">
+                                <img src="{{this.image}}" />
+                            </div>
+                            {{/each}}
+                            {{#each media-modal.thumbs}}
+                            <div class="swiper-slide">
+                                <img src="{{this.image}}" />
+                            </div>
+                            {{/each}}
+                        </div>
+                        <div class="swiper-button-prev"><i class="lnr-chevron-up"></i></div>
+                        <div class="swiper-button-next"><i class="lnr-chevron-down"></i></div>
+                    </div>
+                </div>
+                <div class="media-editor-center cropzone">
+                    <div>
+                        <img id="cropper-img" src="/assets/toolkit/images/fpo/waikiki.jpg" />
+                    </div>
+                </div>
+                <div class="media-editor-right">
+
+                </div>
+            </div>
+
+            <div class="d-flex align-items-stretch cropper-toolbar bgc-gray">
+                <div class="media-editor-left">
+                    <button type="button" class="btn btn-warning btn-lg txt-uppercase rounded-0 btn-block">
+                        Add Crop
+                    </button>
+                </div>
+                <div class="media-editor-center align-self-center">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="pr-1">
+                            <button type="button" class="btn btn-clear" data-flip-direction="horizontal" data-flip="#cropper-img">
+                                <i class="lnr-flip-horizontal txtc-gray-lighter"></i>
+                            </button>
+                        </div>
+                        <div class="pr-3">
+                            <button type="button" class="btn btn-clear" data-flip-direction="vertical" data-flip="#cropper-img">
+                                <i class="lnr-flip-vertical txtc-gray-lighter"></i>
+                            </button>
+                        </div>
+                        <div class="nogrow txtc-gray-lighter" style="margin-top: 5px;">
+                            <i class="lnr-picture" style="font-size: 18px;"></i>
+                        </div>
+                        <div class="mx-4">
+                            <div class="slider" data-slider="horizontal" min="1" max="5" value="1"></div>
+                        </div>
+                        <div class="nogrow txtc-gray-lighter" style="margin-top: 4px;">
+                            <i class="lnr-picture" style="font-size: 24px;"></i>
+                        </div>
+                        <div class="pl-3">
+                            <button type="button" class="btn btn-clear" data-rotate-direction="left" data-rotate="#cropper-img">
+                                <i class="lnr-undo2 txtc-gray-lighter"></i>
+                            </button>
+                        </div>
+                        <div class="pl-1">
+                            <button type="button" class="btn btn-clear" data-rotate-direction="right" data-rotate="#cropper-img">
+                                <i class="lnr-redo2 txtc-gray-lighter"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="media-editor-right">
+                    <button type="button" class="btn btn-primary btn-lg txt-uppercase rounded-0 btn-block">
+                        Save Image
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
