@@ -1,0 +1,30 @@
+/** typeahead styles **/
+
+.twitter-typeahead {
+    width: 100%;
+
+    .tt-menu {
+        @extend .dropdown-menu;
+        width: 100% !important;
+        margin-top: -3px;
+        border-radius: 0;
+        border-color: #5cb3fd;
+    }
+
+    .tt-suggestion {
+        @extend .dropdown-item;
+        padding: 3px 12px;
+    }
+
+    .tt-suggestion.tt-cursor {
+        @extend .dropdown-item.active;
+    }
+}
+
+.input-group > .twitter-typeahead {
+    display: flex !important;
+
+    .tt-menu {
+        margin-top: -1px;
+    }
+}

@@ -8,6 +8,14 @@
         {"image": "/assets/toolkit/images/fpo/2x1.png"},
         {"image": "/assets/toolkit/images/fpo/1024x768.png"},
         {"image": "/assets/toolkit/images/fpo/1920x1080.png"}
+    ],
+    "ratios" : [
+        "1:1",
+        "2:1",
+        "3:4",
+        "4:3",
+        "1:2",
+        "16:9"
     ]
 }
 ---
@@ -42,13 +50,41 @@
                         <div class="swiper-button-next"><i class="lnr-chevron-down"></i></div>
                     </div>
                 </div>
+
                 <div class="media-editor-center cropzone">
                     <div>
                         <img id="cropper-img" src="/assets/toolkit/images/fpo/waikiki.jpg" />
                     </div>
                 </div>
-                <div class="media-editor-right">
 
+                <div class="media-editor-right py-4">
+                    <div class="px-4">
+                        <label class="strong" for="media-editor-crop-name">Name:</label>
+                        <div class="input-group">
+                            <input id="media-editor-crop-name" type="text" class="form-control" name="name" data-typeahead-input />
+                            <span class="input-group-btn">
+                                <button class="btn btn-outline-primary" type="button" data-typeahead-toggle>
+                                    <i class="lnr-chevron-down"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 px-4">
+                        <label class="strong" for="media-editor-crop-ratio">Aspect Ratio:</label>
+                        <div class="input-group">
+                            <input id="media-editor-crop-ratio" type="text"
+                                   class="form-control"
+                                   name="ratio"
+                                   data-typeahead-input='{"minLength": 0, "hint": true, "highlight": true, "limit": 10, "source": ["1:1", "1:2", "2:1", "2:3", "3:2", "3:4", "4:3", "4:5", "5:4", "5:7", "7:5", "9:16", "16:9"]}'
+                            />
+                            <span class="input-group-btn">
+                                <button class="btn btn-outline-primary" type="button" data-typeahead-toggle>
+                                    <i class="lnr-chevron-down"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
